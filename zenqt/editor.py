@@ -915,7 +915,7 @@ class QDMGraphicsNode(QGraphicsItem):
             M = HORI_MARGIN * 0.2
             H = TEXT_HEIGHT * 0.9
             W = self.width / len(cond_keys)
-            rect = QRectF(W * i + M, -TEXT_HEIGHT * 2.3, W - M * 2, H)
+            rect = QRectF(W * i + M, -TEXT_HEIGHT, W - M * 2, H)
             button.setGeometry(rect)
             button.setText(key)
             self.options[key] = button
@@ -985,6 +985,13 @@ class QDMGraphicsNode(QGraphicsItem):
         r = style['node_rounded_radius']
 
         if not self.collapsed:
+            pathTopButton = QPainterPath()
+            rect = QRectF(0, -TEXT_HEIGHT, self.width, TEXT_HEIGHT)
+            pathTopButton.addRect(rect)
+            painter.setPen(Qt.NoPen)
+            painter.setBrush(QColor(style['title_color']))
+            painter.drawPath(pathTopButton.simplified())
+
             pathContent = QPainterPath()
             rect = QRectF(0, 0, self.width, self.height)
             pathContent.addRoundedRect(rect, r, r)
