@@ -21,15 +21,18 @@ class QDMPlayButton(QSvgWidget):
     def isChecked(self):
         return self.checked
     
-    def mousePressEvent(self, event):
-        super().mouseMoveEvent(event)
+    def change(self):
         self.checked = not self.checked
-        self.timeline.value_changed()
         if self.checked:
             self.load(asset_path('stop.svg'))
         else:
             self.load(asset_path('play.svg'))
         self.render.setAspectRatioMode(Qt.KeepAspectRatio)
+
+    def mousePressEvent(self, event):
+        super().mouseMoveEvent(event)
+        self.change()
+        self.timeline.value_changed()
 
 class QDMNextButton(QSvgWidget):
     def __init__(self, timeline):
@@ -78,6 +81,7 @@ class TimelineWidget(QWidget):
 
         self.slider = QSlider(Qt.Horizontal)
         self.slider.valueChanged.connect(self.value_changed)
+        self.slider.sliderPressed.connect(self.slider_press)
         self.slider.setMinimum(0)
         self.slider.setMaximum(1)
 
@@ -113,6 +117,11 @@ class TimelineWidget(QWidget):
     def value_changed(self):
         zenvis.status['next_frameid'] = self.slider.value()
         zenvis.status['playing'] = self.player.isChecked()
+
+    def slider_press(self):
+        if self.player.isChecked():
+            self.player.change()
+        zenvis.status['playing'] = False
 
     def get_status_string(self):
         fps = zenvis.status['render_fps']
