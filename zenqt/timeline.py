@@ -31,6 +31,44 @@ class QDMPlayButton(QSvgWidget):
             self.load(asset_path('play.svg'))
         self.render.setAspectRatioMode(Qt.KeepAspectRatio)
 
+class QDMNextButton(QSvgWidget):
+    def __init__(self, timeline):
+        super().__init__()
+        self.render = self.renderer()
+        self.load(asset_path('next.svg'))
+        self.timeline = timeline
+        # PyQt5 >= 5.15
+        self.render.setAspectRatioMode(Qt.KeepAspectRatio)
+    
+    def mousePressEvent(self, event):
+        super().mouseMoveEvent(event)
+        self.timeline.next_frame()
+        self.load(asset_path('next-click.svg'))
+        self.render.setAspectRatioMode(Qt.KeepAspectRatio)
+    
+    def mouseReleaseEvent(self, event):
+        self.load(asset_path('next.svg'))
+        self.render.setAspectRatioMode(Qt.KeepAspectRatio)
+
+class QDMPrevButton(QSvgWidget):
+    def __init__(self, timeline):
+        super().__init__()
+        self.render = self.renderer()
+        self.load(asset_path('prev.svg'))
+        self.timeline = timeline
+        # PyQt5 >= 5.15
+        self.render.setAspectRatioMode(Qt.KeepAspectRatio)
+    
+    def mousePressEvent(self, event):
+        super().mouseMoveEvent(event)
+        self.timeline.prev_frame()
+        self.load(asset_path('prev-click.svg'))
+        self.render.setAspectRatioMode(Qt.KeepAspectRatio)
+    
+    def mouseReleaseEvent(self, event):
+        self.load(asset_path('prev.svg'))
+        self.render.setAspectRatioMode(Qt.KeepAspectRatio)
+
 class TimelineWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -44,9 +82,13 @@ class TimelineWidget(QWidget):
         self.slider.setMaximum(1)
 
         self.player = QDMPlayButton(self)
+        self.prev = QDMPrevButton(self)
+        self._next = QDMNextButton(self)
 
         layout = QHBoxLayout()
         layout.addWidget(self.player)
+        layout.addWidget(self.prev)
+        layout.addWidget(self._next)
         layout.addWidget(self.label)
         layout.addWidget(self.slider)
         layout.addWidget(self.status)
@@ -76,3 +118,11 @@ class TimelineWidget(QWidget):
         fps = zenvis.status['render_fps']
         spf = zenvis.status['solver_interval']
         return f'{fps:.1f} FPS | {spf:.02f} secs/step'
+
+    def next_frame(self):
+        # TODO
+        print('next')
+
+    def prev_frame(self):
+        # TODO
+        print('prev')
