@@ -1091,6 +1091,8 @@ class QDMEditMenu(QMenu):
                 ('Redo', QKeySequence.Redo),
                 (None, None),
                 ('Duplicate', QKeySequence.Copy),
+                (None, None),
+                ('FPS Limit', None),
         ]
         
         for name, shortcut in acts:
@@ -1098,7 +1100,8 @@ class QDMEditMenu(QMenu):
                 self.addSeparator()
                 continue
             action = QAction(name, self)
-            action.setShortcut(shortcut)
+            if shortcut:
+                action.setShortcut(shortcut)
             self.addAction(action)
 
 
@@ -1345,6 +1348,14 @@ class NodeEditor(QWidget):
 
         elif name == 'Redo':
             self.scene.redo()
+
+        elif name == 'FPS Limit':
+            title = 'Zeno'
+            header = 'Limit FPS:'
+            fps, ok = QInputDialog.getDouble(self, title, header)
+            if ok:
+                # TODO: use fps
+                pass
 
         elif name == 'Duplicate':
             itemList = self.scene.selectedItems()
