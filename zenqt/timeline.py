@@ -81,7 +81,7 @@ class TimelineWidget(QWidget):
 
         self.slider = QSlider(Qt.Horizontal)
         self.slider.valueChanged.connect(self.value_changed)
-        self.slider.sliderPressed.connect(self.slider_press)
+        self.slider.sliderPressed.connect(self.stop_play)
         self.slider.setMinimum(0)
         self.slider.setMaximum(1)
 
@@ -118,7 +118,7 @@ class TimelineWidget(QWidget):
         zenvis.status['next_frameid'] = self.slider.value()
         zenvis.status['playing'] = self.player.isChecked()
 
-    def slider_press(self):
+    def stop_play(self):
         if self.player.isChecked():
             self.player.change()
         zenvis.status['playing'] = False
@@ -129,9 +129,12 @@ class TimelineWidget(QWidget):
         return f'{fps:.1f} FPS | {spf:.02f} secs/step'
 
     def next_frame(self):
-        # TODO
-        print('next')
+        self.stop_play()
+        f = zenvis.status['next_frameid']
+        maxframe = int('0' + self.maxframe.text())
+        zenvis.status['next_frameid'] = min(f + 1, maxframe - 1)
 
     def prev_frame(self):
-        # TODO
-        print('prev')
+        self.stop_play()
+        f = zenvis.status['next_frameid']
+        zenvis.status['next_frameid'] = max(f - 1, 0)
