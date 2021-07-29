@@ -11,12 +11,14 @@ if (OPENMP_FOUND)
     set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${OpenMP_EXE_LINKER_FLAGS}")
 endif()
 
-option(ZENO_DETAILED_LOG "Dump detailed log when running ZENO" OFF)
-if (ZENO_DETAILED_LOG)
-    target_compile_definitions(zeno PRIVATE -DZENO_DETAILED_LOG)
+option(ZENO_TRIGGER_GDB "Trigger GDB when exception or signal catched" OFF)
+if (ZENO_TRIGGER_GDB)
+    target_compile_definitions(zeno PRIVATE -DZENO_TRIGGER_GDB)
 endif()
+
 target_compile_definitions(zeno PRIVATE -DDLL_ZENO)
 target_include_directories(zeno PUBLIC include)
+
 set(OUTPUT_DIR ${PROJECT_SOURCE_DIR}/zeno/lib)
 set_target_properties(zeno PROPERTIES
 	LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}
@@ -30,19 +32,4 @@ set_target_properties(zeno PROPERTIES
 	ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${OUTPUT_DIR}
 	)
 
-
-file(GLOB PYZENO_SOURCE python/*.cpp)
-pybind11_add_module(pyzeno ${PYZENO_SOURCE})
-target_link_libraries(pyzeno PRIVATE zeno)
-set(OUTPUT_DIR ${PROJECT_SOURCE_DIR}/zeno)
-set_target_properties(pyzeno PROPERTIES
-	LIBRARY_OUTPUT_DIRECTORY ${OUTPUT_DIR}
-	RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIR}
-	ARCHIVE_OUTPUT_DIRECTORY ${OUTPUT_DIR}
-	LIBRARY_OUTPUT_DIRECTORY_DEBUG ${OUTPUT_DIR}
-	RUNTIME_OUTPUT_DIRECTORY_DEBUG ${OUTPUT_DIR}
-	ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${OUTPUT_DIR}
-	LIBRARY_OUTPUT_DIRECTORY_RELEASE ${OUTPUT_DIR}
-	RUNTIME_OUTPUT_DIRECTORY_RELEASE ${OUTPUT_DIR}
-	ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${OUTPUT_DIR}
-	)
+add_subdirectory(python)

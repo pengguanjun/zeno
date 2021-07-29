@@ -22,16 +22,18 @@ endif()
 add_library(ZFX STATIC
 # ls {,include/zfx/}*{,/*}.{h,cpp} | grep -v main.cpp
 AST.h
+ConstantFold.cpp
 ConstParametrize.cpp
 ControlCheck.cpp
 DemoteMathFuncs.cpp
 DetectNewSymbols.cpp
 EmitAssembly.cpp
 ExpandFunctions.cpp
+GlobalLocalize.cpp
 KillUnreachable.cpp
+MergeIdentical.cpp
 ReassignGlobals.cpp
 ReassignParameters.cpp
-GlobalLocalize.cpp
 include/zfx/utils.h
 include/zfx/x64.h
 include/zfx/zfx.h
@@ -61,8 +63,9 @@ if (ZFX_PRINT_IR)
 endif()
 target_include_directories(ZFX PUBLIC include)
 if (ZFX_ENABLE_CUDA)
+    find_package(CUDAToolkit REQUIRED)
     target_sources(ZFX PRIVATE cuda/Assembler.cpp)
-    target_link_libraries(ZFX PUBLIC cuda nvrtc)
+    target_link_libraries(ZFX PUBLIC CUDA::cuda_driver CUDA::nvrtc)
 endif()
 
 if (ZFX_ENABLE_CUDA)

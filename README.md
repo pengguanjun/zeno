@@ -86,7 +86,7 @@ Zeno adopts a highly decoupled design of things, making extending it becoming su
 
 Here's an example on how to add a ZENO node with its C++ API:
 
-![demo_project/main.cpp](images/demo_project.png "demo_project/main.cpp")
+[![zeno_addon_wizard/YourProject/CustomNumber.cpp](images/demo_project.png)](https://github.com/zenustech/zeno_addon_wizard/blob/main/YourProject/CustomNumber.cpp)
 
 ## Extensible
 
@@ -144,31 +144,32 @@ If you find the binary version didn't worked properly or some error message has 
 
 ## Installation requirements
 
-You need a C++17 compiler, CMake 3.12+, and Python 3.6+ to build ZENO; NumPy and PySide2 (Qt for Python) to run ZENO editor.
-Other requirements like Pybind11 or GLAD are self-contained and you don't have to worry installing them manually.
+You need a C++17 compiler, CMake 3.12+, and Python 3.6+ to build ZENO; Pybind11, NumPy and PySide2 (Qt for Python) to run ZENO editor.
+Other requirements like GLAD are self-contained and you don't have to worry installing them manually.
 
 - Arch Linux
 
 ```bash
-sudo pacman -S gcc make cmake python python-pip python-numpy python-pyqt5 qt5-base libglvnd mesa
+sudo pacman -S gcc make cmake python python-pip python-numpy pyside2
 ```
 
 - Ubuntu 20.04
 
 ```bash
-sudo apt-get install gcc make cmake python-is-python3 python-dev-is-python3 python3-pip libqt5core5a qt5dxcb-plugin libglvnd-dev libglapi-mesa libosmesa6
+sudo apt-get install gcc make cmake python-is-python3 python-dev-is-python3 python3-pip qt5dxcb-plugin
 
 python --version  # make sure Python version >= 3.7
 sudo python -m pip install -U pip
-sudo python -m pip install numpy PySide2
+sudo python -m pip install pybind11 numpy PySide2
 ```
 
 - Windows 10
 
 1. Install Python 3.8 64-bit. IMPORTANT: make sure you **Add Python 3.8 to PATH**! After that rebooting your computer would be the best.
+
 2. Start CMD in **Administrator mode** and type these commands:
 ```cmd
-python -m pip install numpy PySide2
+python -m pip install pybind11 numpy PySide2
 ```
 (Fun fact: you will be redirected to Microsoft Store if `python` is not added to PATH properly :)
 Make sure it starts to downloading and installing successfully without `ERROR` (warnings are OK though).
@@ -215,6 +216,28 @@ IMPORTANT: In MSVC, Release mode must **always be active** when building ZENO, s
 run.bat
 ```
 
+After successfully loading the editor, you may play `arts/ready/LorenzParticleTrail.zsg` which is confirmed to work at this moment :)
+
+#### Troubleshooting
+
+1. If you got:
+```bash
+This application failed to start because it could not find or load the Qt platform plugin "xxx"
+
+Reinstalling the application may fix this problem.
+```
+
+- Windows
+
+Are you using Anaconda? Please try using the methods in: https://stackoverflow.com/questions/41994485/how-to-fix-could-not-find-or-load-the-qt-platform-plugin-windows-while-using-m
+
+- Ubuntu 20.04
+
+```bash
+sudo apt-get install qt5dxcb-plugin
+```
+
+2. Please let me know if you have any trouble not mentioned above by opening an [issue](https://github.com/zenustech/zeno/issues) on GitHub, thanks for you support!
 
 ## ZENO Extensions
 
@@ -314,11 +337,11 @@ self-contained and portable to all platforms.
 
 ### Write your own extension!
 
-See ```demo_project/``` for an example on how to write custom nodes in ZENO.
+See https://github.com/zenustech/zeno_addon_wizard for an example on how to write custom nodes in ZENO.
 
 #### Installing extensions
 
-To install a node library for ZENO just copy the `.so` or `.dll` files to `zeno/lib/`. See ```demo_project/CMakeLists.txt``` for how to automate this in CMake.
+To install a node library for ZENO just copy the `.so` or `.dll` files to `zeno/lib/`.
 
 
 # Miscellaneous
@@ -353,11 +376,8 @@ You may contact us via WeChat:
 - Arch Linux
 
 ```bash
-cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/tmp/tmp-install
-make -C build -j8
-make -C build install
 ./dist.sh
-# you will get /tmp/zeno-linux-20xx.x.x.tar.gz
+# you will get /tmp/release/zeno-linux-20xx.x.x.tar.gz
 ```
 
 - Windows

@@ -15,12 +15,15 @@ struct Options {
     bool global_localize = true;
     bool demote_math_funcs = true;
     bool save_math_registers = true;
-    int arch_maxregs = 8;
+    int arch_maxregs = 16;
 
     bool detect_new_symbols = false;
     bool reassign_parameters = true;
     bool reassign_channels = true;
+
+    bool merge_identical = true;
     bool kill_unreachable = true;
+    bool constant_fold = true;
 
     //Options() = default;
 
@@ -30,7 +33,7 @@ struct Options {
         , global_localize(true)
         , demote_math_funcs(true)
         , save_math_registers(true)
-        , arch_maxregs(8)
+        , arch_maxregs(16)
     {}
 
     static constexpr struct {} for_cuda{};
@@ -102,13 +105,13 @@ struct Program {
 
     int symbol_id(std::string const &name, int dim) const {
         auto it = std::find(
-            symbols.begin(), symbols.end(), std::pair{name, dim});
+            symbols.begin(), symbols.end(), std::make_pair(name, dim));
         return it != symbols.end() ? it - symbols.begin() : -1;
     }
 
     int param_id(std::string const &name, int dim) const {
         auto it = std::find(
-            params.begin(), params.end(), std::pair{name, dim});
+            params.begin(), params.end(), std::make_pair(name, dim));
         return it != params.end() ? it - params.begin() : -1;
     }
 };

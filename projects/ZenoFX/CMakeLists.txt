@@ -1,9 +1,8 @@
 add_library(ZenoFXlib SHARED)
 target_include_directories(ZenoFXlib PRIVATE .)
 
-find_package(zeno REQUIRED)
 target_link_libraries(ZenoFXlib PRIVATE zeno ZFX)
-target_sources(ZenoFXlib PRIVATE pw.cpp pnw.cpp)
+target_sources(ZenoFXlib PRIVATE nw.cpp pw.cpp pnw.cpp ppw.cpp pew.cpp)
 
 if (EXTENSION_zenvdb)
     option(ZENOFX_ENABLE_OPENVDB "Enable OpenVDB wrangler in ZenoFX" ON)
@@ -15,7 +14,13 @@ if (ZENOFX_ENABLE_OPENVDB)
     target_include_directories(ZenoFXlib PRIVATE ../zenvdb/include)
     target_link_libraries(ZenoFXlib PRIVATE openvdb)
 endif()
+find_package(OpenMP)
+if (TARGET OpenMP::OpenMP_CXX)
+    message("found package: OpenMP::OpenMP_CXX")
+    target_link_libraries(ZenoFXlib PRIVATE OpenMP::OpenMP_CXX)
+endif()
 
+get_property(zeno_AUTOLOAD_DIR TARGET zeno PROPERTY LIBRARY_OUTPUT_DIRECTORY)
 set_target_properties(ZenoFXlib PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${zeno_AUTOLOAD_DIR}
     RUNTIME_OUTPUT_DIRECTORY ${zeno_AUTOLOAD_DIR}

@@ -190,6 +190,7 @@ uniform mat4 mVP;
 uniform mat4 mInvVP;
 uniform mat4 mView;
 uniform mat4 mProj;
+uniform float mPointScale;
 
 attribute vec3 vPosition;
 attribute vec3 vColor;
@@ -198,15 +199,19 @@ attribute vec3 vNormal;
 varying vec3 position;
 varying vec3 color;
 varying float radius;
-
 void main()
 {
   position = vPosition;
   color = vColor;
   radius = vNormal.x;
 
+  vec3 posEye = vec3(mView * vec4(position, 1.0));
+  float dist = length(posEye);
+  if (radius != 0)
+    gl_PointSize = max(1, radius * mPointScale / dist);
+  else
+    gl_PointSize = max(min(3.0, radius * mPointScale / dist),1.0);
   gl_Position = mVP * vec4(position, 1.0);
-  gl_PointSize = radius;
 }
 )";
     }
@@ -221,12 +226,19 @@ uniform mat4 mProj;
 
 varying vec3 position;
 varying vec3 color;
-
+varying float radius;
 void main()
 {
-  if (length(gl_PointCoord - vec2(0.5)) > 0.5)
+  vec2 coor = gl_PointCoord * 2 - 1;
+  float len2 = dot(coor, coor);
+  if (len2 > 1 && radius != 0)
     discard;
-  gl_FragColor = vec4(color, 1.0);
+  vec3 oColor;
+  if (radius > 1)
+    oColor = color * mix(1, 0.4, len2);
+  else
+    oColor = color;
+  gl_FragColor = vec4(oColor, 1.0);
 }
 )";
     }

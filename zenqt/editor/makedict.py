@@ -65,8 +65,6 @@ class QDMGraphicsTextButton(QGraphicsItem):
 
 
 
-
-
 class QDMGraphicsSocketEdiable(QDMGraphicsSocket):
     def __init__(self, parent=None):
         super().__init__(parent)

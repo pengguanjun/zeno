@@ -1,3 +1,24 @@
+#if 0
+#include "SIMDBuilder.h"
+#include <memory>
+
+using namespace zfx;
+using namespace zfx::x64;
+
+int main() {
+    auto builder = std::make_unique<SIMDBuilder>();
+    builder->addAvxBroadcastLoadOp(simdtype::xmmps, 7, opreg::rax);
+    builder->addAvxBroadcastLoadOp(simdtype::ymmpd, 7, opreg::rax);
+    builder->addAvxBroadcastLoadOp(simdtype::xmmps, 15, opreg::rax);
+    builder->addAvxBroadcastLoadOp(simdtype::ymmpd, 15, opreg::rax);
+    for (uint8_t inst: builder->res) {
+        printf("%02X ", inst);
+    }
+    printf("\n");
+    return 0;
+}
+
+#else
 #include <zfx/zfx.h>
 #include <zfx/x64.h>
 #include <cmath>
@@ -14,14 +35,17 @@ int main() {
         return pos;
     };
 #else
-    int n = 1;
+    int n = 3;
     std::string code(R"(
-@clr = sin(@pos)
+#tmp = @pos + 0.5  # this is a comment
+#@clr = tmp + 3.14 * tmp + 2.718 / (@pos * tmp + 1)
+@clr = sin(1) * @pos
 )");
 #endif
 
     zfx::Options opts(zfx::Options::for_x64);
     opts.detect_new_symbols = true;
+    //opts.constant_fold = false;
     opts.reassign_channels = false;
     opts.reassign_parameters = false;
     opts.define_symbol("@pos", n);
@@ -51,3 +75,4 @@ int main() {
 
     return 0;
 }
+#endif

@@ -2,6 +2,7 @@
 #include "AST.h"
 #include "Stmts.h"
 #include "Lexical.h"
+#include <sstream>
 #include <map>
 
 namespace zfx {
@@ -97,12 +98,15 @@ struct LowerAST {
     Statement *serialize(AST *ast) {
         if (0) {
 
-        } else if (contains({"+", "-", "*", "/", "%"}, ast->token) && ast->args.size() == 2) {
+        } else if (contains({"+", "-", "*", "/", "%",
+                    "==", "!=", "<", "<=", ">", ">=",
+                    "&", "&!", "|", "^",
+                    }, ast->token) && ast->args.size() == 2) {
             auto lhs = serialize(ast->args[0].get());
             auto rhs = serialize(ast->args[1].get());
             return ir->emplace_back<BinaryOpStmt>(ast->token, lhs, rhs);
 
-        } else if (contains({"+", "-"}, ast->token) && ast->args.size() == 1) {
+        } else if (contains({"+", "-", "!"}, ast->token) && ast->args.size() == 1) {
             auto src = serialize(ast->args[0].get());
             return ir->emplace_back<UnaryOpStmt>(ast->token, src);
 
@@ -110,6 +114,12 @@ struct LowerAST {
             auto dst = serialize(ast->args[0].get());
             auto src = serialize(ast->args[1].get());
             return ir->emplace_back<AssignStmt>(dst, src);
+
+        } else if (contains({"?"}, ast->token) && ast->args.size() == 3) {
+            auto cond = serialize(ast->args[0].get());
+            auto lhs = serialize(ast->args[1].get());
+            auto rhs = serialize(ast->args[2].get());
+            return ir->emplace_back<TernaryOpStmt>(cond, lhs, rhs);
 
         } else if (contains({"+=", "-=", "*=", "/=", "%="},
             ast->token) && ast->args.size() == 2) {
@@ -143,7 +153,10 @@ struct LowerAST {
             return emplace_temporary_symbol(ast->token);
 
         } else if (is_literial_atom(ast->token) && ast->args.size() == 0) {
-            return ir->emplace_back<LiterialStmt>(ast->token);
+            float value = 0.0f;
+            if (!(std::stringstream(ast->token) >> value))
+                error("failed to parse float literial: %s\n", ast->token.c_str());
+            return ir->emplace_back<LiterialStmt>(value);
 
         } else if (contains({"()"}, ast->token) && ast->args.size() >= 1) {
             auto func_name = ast->args[0]->token;

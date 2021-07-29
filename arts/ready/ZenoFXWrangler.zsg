@@ -202,12 +202,28 @@
      "socket_keys": [
       "frame_id"
      ]
+    },
+    "a537e974-PrimitiveClearConnect": {
+     "name": "PrimitiveClearConnect",
+     "inputs": {
+      "prim": [
+       "e2e7d25d-ParticlesWrangle",
+       "prim"
+      ],
+      "SRC": null
+     },
+     "params": {},
+     "uipos": [
+      728.9600000000002,
+      398.08000000000004
+     ],
+     "options": []
     }
    },
    "view": {
-    "scale": 1.953125,
-    "trans_x": -772,
-    "trans_y": 472
+    "scale": 0.6400000000000001,
+    "trans_x": -384,
+    "trans_y": -77
    }
   }
  },
@@ -215,13 +231,33 @@
  "descs": {
   "AppendList": {
    "inputs": [
-    "list",
-    "object",
-    "SRC"
+    [
+     "",
+     "list",
+     ""
+    ],
+    [
+     "",
+     "object",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "list",
-    "DST"
+    [
+     "",
+     "list",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -230,13 +266,33 @@
   },
   "Assign": {
    "inputs": [
-    "dst",
-    "src",
-    "SRC"
+    [
+     "",
+     "dst",
+     ""
+    ],
+    [
+     "",
+     "src",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "dst",
-    "DST"
+    [
+     "",
+     "dst",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -245,13 +301,33 @@
   },
   "BeginFor": {
    "inputs": [
-    "count",
-    "SRC"
+    [
+     "",
+     "count",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "index",
-    "FOR",
-    "DST"
+    [
+     "",
+     "index",
+     ""
+    ],
+    [
+     "",
+     "FOR",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -260,14 +336,38 @@
   },
   "BeginForEach": {
    "inputs": [
-    "list",
-    "SRC"
+    [
+     "",
+     "list",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "object",
-    "index",
-    "FOR",
-    "DST"
+    [
+     "",
+     "object",
+     ""
+    ],
+    [
+     "",
+     "index",
+     ""
+    ],
+    [
+     "",
+     "FOR",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -276,11 +376,58 @@
   },
   "BreakFor": {
    "inputs": [
-    "FOR",
-    "SRC"
+    [
+     "",
+     "FOR",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
+   ],
+   "params": [],
+   "categories": [
+    "control"
+   ]
+  },
+  "CachedIf": {
+   "inputs": [
+    [
+     "",
+     "input",
+     ""
+    ],
+    [
+     "",
+     "keepCache",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
+   ],
+   "outputs": [
+    [
+     "",
+     "output",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -289,27 +436,93 @@
   },
   "CachedOnce": {
    "inputs": [
-    "input",
-    "SRC"
+    [
+     "",
+     "input",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "output",
-    "DST"
+    [
+     "",
+     "output",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
     "control"
    ]
   },
-  "DictGetItem": {
+  "Clone": {
    "inputs": [
-    "dict",
-    "key",
-    "SRC"
+    [
+     "",
+     "object",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "object",
-    "DST"
+    [
+     "",
+     "newObject",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
+   ],
+   "params": [],
+   "categories": [
+    "portal"
+   ]
+  },
+  "DictGetItem": {
+   "inputs": [
+    [
+     "dict",
+     "dict",
+     ""
+    ],
+    [
+     "string",
+     "key",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
+   ],
+   "outputs": [
+    [
+     "any",
+     "object",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -318,14 +531,38 @@
   },
   "DictSetItem": {
    "inputs": [
-    "dict",
-    "key",
-    "object",
-    "SRC"
+    [
+     "dict",
+     "dict",
+     ""
+    ],
+    [
+     "string",
+     "key",
+     ""
+    ],
+    [
+     "any",
+     "object",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "dict",
-    "DST"
+    [
+     "dict",
+     "dict",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -334,12 +571,28 @@
   },
   "DictSize": {
    "inputs": [
-    "dict",
-    "SRC"
+    [
+     "dict",
+     "dict",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "size",
-    "DST"
+    [
+     "numeric:int",
+     "size",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -348,11 +601,23 @@
   },
   "EmptyDict": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "dict",
-    "DST"
+    [
+     "dict",
+     "dict",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -361,11 +626,23 @@
   },
   "EmptyList": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "list",
-    "DST"
+    [
+     "",
+     "list",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -374,11 +651,23 @@
   },
   "EndFor": {
    "inputs": [
-    "FOR",
-    "SRC"
+    [
+     "",
+     "FOR",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -387,10 +676,18 @@
   },
   "ExitProcess": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -405,12 +702,28 @@
   },
   "ExportZpmPrimitive": {
    "inputs": [
-    "prim",
-    "path",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "path",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -419,11 +732,23 @@
   },
   "ExtractDict": {
    "inputs": [
-    "dict",
-    "SRC"
+    [
+     "dict",
+     "dict",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -432,13 +757,33 @@
   },
   "ExtractList": {
    "inputs": [
-    "list",
-    "index",
-    "SRC"
+    [
+     "",
+     "list",
+     ""
+    ],
+    [
+     "",
+     "index",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "object",
-    "DST"
+    [
+     "",
+     "object",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -447,13 +792,33 @@
   },
   "FuncBegin": {
    "inputs": [
-    "extraArgs",
-    "SRC"
+    [
+     "",
+     "extraArgs",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "args",
-    "FUNC",
-    "DST"
+    [
+     "",
+     "args",
+     ""
+    ],
+    [
+     "",
+     "FUNC",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -462,13 +827,33 @@
   },
   "FuncCall": {
    "inputs": [
-    "function",
-    "args",
-    "SRC"
+    [
+     "",
+     "function",
+     ""
+    ],
+    [
+     "",
+     "args",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "rets",
-    "DST"
+    [
+     "",
+     "rets",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -477,13 +862,33 @@
   },
   "FuncEnd": {
    "inputs": [
-    "rets",
-    "FUNC",
-    "SRC"
+    [
+     "",
+     "rets",
+     ""
+    ],
+    [
+     "",
+     "FUNC",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "function",
-    "DST"
+    [
+     "",
+     "function",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -492,11 +897,23 @@
   },
   "GetFrameNum": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "FrameNum",
-    "DST"
+    [
+     "",
+     "FrameNum",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -505,11 +922,23 @@
   },
   "GetFramePortion": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "FramePortion",
-    "DST"
+    [
+     "",
+     "FramePortion",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -518,11 +947,23 @@
   },
   "GetFrameTime": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "time",
-    "DST"
+    [
+     "",
+     "time",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -531,11 +972,23 @@
   },
   "GetFrameTimeElapsed": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "time",
-    "DST"
+    [
+     "",
+     "time",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -544,11 +997,23 @@
   },
   "GetTime": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "time",
-    "DST"
+    [
+     "",
+     "time",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -557,14 +1022,38 @@
   },
   "IfElse": {
    "inputs": [
-    "true",
-    "false",
-    "cond",
-    "SRC"
+    [
+     "",
+     "true",
+     ""
+    ],
+    [
+     "",
+     "false",
+     ""
+    ],
+    [
+     "",
+     "cond",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "result",
-    "DST"
+    [
+     "",
+     "result",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -573,12 +1062,28 @@
   },
   "ImportObjPrimitive": {
    "inputs": [
-    "path",
-    "SRC"
+    [
+     "",
+     "path",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -587,12 +1092,28 @@
   },
   "ImportZpmPrimitive": {
    "inputs": [
-    "path",
-    "SRC"
+    [
+     "",
+     "path",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -601,12 +1122,28 @@
   },
   "IntegrateFrameTime": {
    "inputs": [
-    "desired_dt",
-    "SRC"
+    [
+     "",
+     "desired_dt",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "actual_dt",
-    "DST"
+    [
+     "",
+     "actual_dt",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -621,12 +1158,28 @@
   },
   "ListLength": {
    "inputs": [
-    "list",
-    "SRC"
+    [
+     "",
+     "list",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "length",
-    "DST"
+    [
+     "",
+     "length",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -635,17 +1188,53 @@
   },
   "Make2DGridPrimitive": {
    "inputs": [
-    "nx",
-    "ny",
-    "sizeX",
-    "sizeY",
-    "scale",
-    "origin",
-    "SRC"
+    [
+     "numeric:int",
+     "nx",
+     ""
+    ],
+    [
+     "numeric:int",
+     "ny",
+     ""
+    ],
+    [
+     "numeric:vec3f",
+     "sizeX",
+     ""
+    ],
+    [
+     "numeric:vec3f",
+     "sizeY",
+     ""
+    ],
+    [
+     "numeric:float",
+     "scale",
+     ""
+    ],
+    [
+     "numeric:vec3f",
+     "origin",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "primitive",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -665,19 +1254,63 @@
   },
   "Make3DGridPrimitive": {
    "inputs": [
-    "nx",
-    "ny",
-    "nz",
-    "sizeX",
-    "sizeY",
-    "sizeZ",
-    "scale",
-    "origin",
-    "SRC"
+    [
+     "",
+     "nx",
+     ""
+    ],
+    [
+     "",
+     "ny",
+     ""
+    ],
+    [
+     "",
+     "nz",
+     ""
+    ],
+    [
+     "",
+     "sizeX",
+     ""
+    ],
+    [
+     "",
+     "sizeY",
+     ""
+    ],
+    [
+     "",
+     "sizeZ",
+     ""
+    ],
+    [
+     "",
+     "scale",
+     ""
+    ],
+    [
+     "",
+     "origin",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -690,13 +1323,75 @@
     "primitive"
    ]
   },
-  "MakeDict": {
+  "MakeCubePrimitive": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "spacing",
+     ""
+    ],
+    [
+     "",
+     "nx",
+     ""
+    ],
+    [
+     "",
+     "ny",
+     ""
+    ],
+    [
+     "",
+     "nz",
+     ""
+    ],
+    [
+     "",
+     "origin",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "dict",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
+   ],
+   "params": [],
+   "categories": [
+    "primitive"
+   ]
+  },
+  "MakeDict": {
+   "inputs": [
+    [
+     "",
+     "SRC",
+     ""
+    ]
+   ],
+   "outputs": [
+    [
+     "dict",
+     "dict",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -705,11 +1400,23 @@
   },
   "MakeGCTest": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "value",
-    "DST"
+    [
+     "",
+     "value",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -724,11 +1431,23 @@
   },
   "MakeHeatmap": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "heatmap",
-    "DST"
+    [
+     "",
+     "heatmap",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -743,11 +1462,23 @@
   },
   "MakeMultilineString": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "value",
-    "DST"
+    [
+     "string",
+     "value",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -757,20 +1488,48 @@
     ]
    ],
    "categories": [
-    "fileio"
+    "string"
    ]
   },
   "MakeOrthonormalBase": {
    "inputs": [
-    "normal",
-    "tangent",
-    "SRC"
+    [
+     "numeric:vec3f",
+     "normal",
+     ""
+    ],
+    [
+     "numeric:vec3f",
+     "tangent",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "normal",
-    "tangent",
-    "bitangent",
-    "DST"
+    [
+     "numeric:vec3f",
+     "normal",
+     ""
+    ],
+    [
+     "",
+     "tangent",
+     ""
+    ],
+    [
+     "numeric:vec3f",
+     "bitangent",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -779,11 +1538,23 @@
   },
   "MakePrimitive": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -792,17 +1563,53 @@
   },
   "MakeSmallList": {
    "inputs": [
-    "obj0",
-    "obj1",
-    "obj2",
-    "obj3",
-    "obj4",
-    "obj5",
-    "SRC"
+    [
+     "",
+     "obj0",
+     ""
+    ],
+    [
+     "",
+     "obj1",
+     ""
+    ],
+    [
+     "",
+     "obj2",
+     ""
+    ],
+    [
+     "",
+     "obj3",
+     ""
+    ],
+    [
+     "",
+     "obj4",
+     ""
+    ],
+    [
+     "",
+     "obj5",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "list",
-    "DST"
+    [
+     "",
+     "list",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -811,11 +1618,23 @@
   },
   "MakeString": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "value",
-    "DST"
+    [
+     "string",
+     "value",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -825,18 +1644,38 @@
     ]
    ],
    "categories": [
-    "fileio"
+    "string"
    ]
   },
   "MakeVisualAABBPrimitive": {
    "inputs": [
-    "boundMin",
-    "boundMax",
-    "SRC"
+    [
+     "",
+     "boundMin",
+     ""
+    ],
+    [
+     "",
+     "boundMax",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -851,11 +1690,23 @@
   },
   "NumericFloat": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "value",
-    "DST"
+    [
+     "numeric:float",
+     "value",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -870,11 +1721,23 @@
   },
   "NumericInt": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "value",
-    "DST"
+    [
+     "numeric:int",
+     "value",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -889,16 +1752,48 @@
   },
   "NumericInterpolation": {
    "inputs": [
-    "src",
-    "srcMin",
-    "srcMax",
-    "dstMin",
-    "dstMax",
-    "SRC"
+    [
+     "numeric",
+     "src",
+     ""
+    ],
+    [
+     "numeric",
+     "srcMin",
+     ""
+    ],
+    [
+     "numeric",
+     "srcMax",
+     ""
+    ],
+    [
+     "numeric",
+     "dstMin",
+     ""
+    ],
+    [
+     "numeric",
+     "dstMax",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "dst",
-    "DST"
+    [
+     "numeric",
+     "dst",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -913,13 +1808,33 @@
   },
   "NumericOperator": {
    "inputs": [
-    "lhs",
-    "rhs",
-    "SRC"
+    [
+     "numeric",
+     "lhs",
+     ""
+    ],
+    [
+     "numeric",
+     "rhs",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "ret",
-    "DST"
+    [
+     "numeric",
+     "ret",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -934,11 +1849,23 @@
   },
   "NumericRandom": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "value",
-    "DST"
+    [
+     "numeric",
+     "value",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -953,11 +1880,23 @@
   },
   "NumericVec2": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "vec2",
-    "DST"
+    [
+     "numeric:vec2f",
+     "vec2",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -977,11 +1916,23 @@
   },
   "NumericVec3": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "vec3",
-    "DST"
+    [
+     "numeric:vec3f",
+     "vec3",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1006,11 +1957,23 @@
   },
   "NumericVec4": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "vec4",
-    "DST"
+    [
+     "numeric:vec4f",
+     "vec4",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1038,18 +2001,170 @@
     "numeric"
    ]
   },
-  "ParticlesNeighborWrangle": {
+  "NumericWrangle": {
    "inputs": [
-    "prim",
-    "primNei",
-    "zfxCode",
-    "params",
-    "radius",
-    "SRC"
+    [
+     "dict:numeric",
+     "params",
+     ""
+    ],
+    [
+     "string",
+     "zfxCode",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "dict:numeric",
+     "result",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
+   ],
+   "params": [],
+   "categories": [
+    "zenofx"
+   ]
+  },
+  "ParticleParticleWrangle": {
+   "inputs": [
+    [
+     "primitive",
+     "prim1",
+     ""
+    ],
+    [
+     "primitive",
+     "prim2",
+     ""
+    ],
+    [
+     "string",
+     "zfxCode",
+     ""
+    ],
+    [
+     "dict:numeric",
+     "params",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
+   ],
+   "outputs": [
+    [
+     "primitive",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
+   ],
+   "params": [],
+   "categories": [
+    "zenofx"
+   ]
+  },
+  "ParticlesBuildHashGrid": {
+   "inputs": [
+    [
+     "primitive",
+     "primNei",
+     ""
+    ],
+    [
+     "numeric:float",
+     "radius",
+     ""
+    ],
+    [
+     "numeric:float",
+     "radiusMin",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
+   ],
+   "outputs": [
+    [
+     "hashgrid",
+     "hashGrid",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
+   ],
+   "params": [],
+   "categories": [
+    "zenofx"
+   ]
+  },
+  "ParticlesNeighborWrangle": {
+   "inputs": [
+    [
+     "primitive",
+     "prim",
+     ""
+    ],
+    [
+     "primitive",
+     "primNei",
+     ""
+    ],
+    [
+     "hashgrid",
+     "hashGrid",
+     ""
+    ],
+    [
+     "string",
+     "zfxCode",
+     ""
+    ],
+    [
+     "dict:numeric",
+     "params",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
+   ],
+   "outputs": [
+    [
+     "primitive",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1058,14 +2173,38 @@
   },
   "ParticlesWrangle": {
    "inputs": [
-    "prim",
-    "zfxCode",
-    "params",
-    "SRC"
+    [
+     "primitive",
+     "prim",
+     ""
+    ],
+    [
+     "string",
+     "zfxCode",
+     ""
+    ],
+    [
+     "dict:numeric",
+     "params",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "primitive",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1074,17 +2213,53 @@
   },
   "PlaneProjectPrimitive2DAABB": {
    "inputs": [
-    "origin",
-    "normal",
-    "tangent",
-    "bitangent",
-    "prim",
-    "SRC"
+    [
+     "",
+     "origin",
+     ""
+    ],
+    [
+     "",
+     "normal",
+     ""
+    ],
+    [
+     "",
+     "tangent",
+     ""
+    ],
+    [
+     "",
+     "bitangent",
+     ""
+    ],
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "boundMin2D",
-    "boundMax2D",
-    "DST"
+    [
+     "",
+     "boundMin2D",
+     ""
+    ],
+    [
+     "",
+     "boundMax2D",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1093,11 +2268,23 @@
   },
   "PortalIn": {
    "inputs": [
-    "port",
-    "SRC"
+    [
+     "",
+     "port",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1112,11 +2299,23 @@
   },
   "PortalOut": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "port",
-    "DST"
+    [
+     "",
+     "port",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1131,13 +2330,33 @@
   },
   "PrimitiveAddAttr": {
    "inputs": [
-    "prim",
-    "fillValue",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "fillValue",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1157,14 +2376,38 @@
   },
   "PrimitiveBinaryOp": {
    "inputs": [
-    "primA",
-    "primB",
-    "primOut",
-    "SRC"
+    [
+     "",
+     "primA",
+     ""
+    ],
+    [
+     "",
+     "primB",
+     ""
+    ],
+    [
+     "",
+     "primOut",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "primOut",
-    "DST"
+    [
+     "",
+     "primOut",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1194,12 +2437,28 @@
   },
   "PrimitiveCalcNormal": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1208,12 +2467,28 @@
   },
   "PrimitiveClearConnect": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1222,15 +2497,43 @@
   },
   "PrimitiveColorByHeatmap": {
    "inputs": [
-    "prim",
-    "heatmap",
-    "min",
-    "max",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "heatmap",
+     ""
+    ],
+    [
+     "",
+     "min",
+     ""
+    ],
+    [
+     "",
+     "max",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1245,13 +2548,33 @@
   },
   "PrimitiveFillAttr": {
    "inputs": [
-    "prim",
-    "value",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "value",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1266,12 +2589,28 @@
   },
   "PrimitiveGetSize": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "size",
-    "DST"
+    [
+     "",
+     "size",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1280,14 +2619,38 @@
   },
   "PrimitiveHalfBinaryOp": {
    "inputs": [
-    "primA",
-    "valueB",
-    "primOut",
-    "SRC"
+    [
+     "",
+     "primA",
+     ""
+    ],
+    [
+     "",
+     "valueB",
+     ""
+    ],
+    [
+     "",
+     "primOut",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "primOut",
-    "DST"
+    [
+     "",
+     "primOut",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1312,12 +2675,28 @@
   },
   "PrimitiveMerge": {
    "inputs": [
-    "listPrim",
-    "SRC"
+    [
+     "",
+     "listPrim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1326,15 +2705,43 @@
   },
   "PrimitiveMix": {
    "inputs": [
-    "primA",
-    "primB",
-    "primOut",
-    "coef",
-    "SRC"
+    [
+     "",
+     "primA",
+     ""
+    ],
+    [
+     "",
+     "primB",
+     ""
+    ],
+    [
+     "",
+     "primOut",
+     ""
+    ],
+    [
+     "",
+     "coef",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "primOut",
-    "DST"
+    [
+     "",
+     "primOut",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1359,12 +2766,28 @@
   },
   "PrimitivePrintAttr": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1379,12 +2802,28 @@
   },
   "PrimitiveRandomizeAttr": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1429,12 +2868,28 @@
   },
   "PrimitiveReduction": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "result",
-    "DST"
+    [
+     "",
+     "result",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1454,13 +2909,33 @@
   },
   "PrimitiveResize": {
    "inputs": [
-    "prim",
-    "size",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "size",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1469,12 +2944,28 @@
   },
   "PrimitiveShade": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "shade",
-    "DST"
+    [
+     "",
+     "shade",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1499,12 +2990,28 @@
   },
   "PrimitiveSimpleLines": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1513,12 +3020,28 @@
   },
   "PrimitiveSimplePoints": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1527,12 +3050,28 @@
   },
   "PrimitiveSimpleQuads": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1541,12 +3080,28 @@
   },
   "PrimitiveSimpleTris": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1555,12 +3110,58 @@
   },
   "PrimitiveSplitEdges": {
    "inputs": [
-    "prim",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "prim",
-    "DST"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
+   ],
+   "params": [],
+   "categories": [
+    "primitive"
+   ]
+  },
+  "PrimitiveTraceTrail": {
+   "inputs": [
+    [
+     "primitive",
+     "parsPrim",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
+   ],
+   "outputs": [
+    [
+     "primitive",
+     "trailPrim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1569,13 +3170,33 @@
   },
   "PrimitiveUnaryOp": {
    "inputs": [
-    "primA",
-    "primOut",
-    "SRC"
+    [
+     "",
+     "primA",
+     ""
+    ],
+    [
+     "",
+     "primOut",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "primOut",
-    "DST"
+    [
+     "",
+     "primOut",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1600,10 +3221,18 @@
   },
   "PrintMessage": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1618,11 +3247,23 @@
   },
   "PrintNumeric": {
    "inputs": [
-    "value",
-    "SRC"
+    [
+     "numeric",
+     "value",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1637,12 +3278,28 @@
   },
   "Route": {
    "inputs": [
-    "input",
-    "SRC"
+    [
+     "",
+     "input",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "output",
-    "DST"
+    [
+     "",
+     "output",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1651,11 +3308,23 @@
   },
   "SetFrameTime": {
    "inputs": [
-    "time",
-    "SRC"
+    [
+     "",
+     "time",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1664,10 +3333,18 @@
   },
   "SubCategory": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1682,17 +3359,44 @@
   },
   "SubInput": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "port",
-    "DST"
+    [
+     "",
+     "port",
+     ""
+    ],
+    [
+     "",
+     "hasValue",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
      "string",
+     "type",
+     ""
+    ],
+    [
+     "string",
      "name",
      "input1"
+    ],
+    [
+     "string",
+     "defl",
+     ""
     ]
    ],
    "categories": [
@@ -1701,17 +3405,39 @@
   },
   "SubOutput": {
    "inputs": [
-    "port",
-    "SRC"
+    [
+     "",
+     "port",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
      "string",
+     "type",
+     ""
+    ],
+    [
+     "string",
      "name",
      "output1"
+    ],
+    [
+     "string",
+     "defl",
+     ""
     ]
    ],
    "categories": [
@@ -1720,10 +3446,18 @@
   },
   "Subgraph": {
    "inputs": [
-    "SRC"
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "DST"
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [
     [
@@ -1738,16 +3472,48 @@
   },
   "TransformPrimitive": {
    "inputs": [
-    "prim",
-    "translation",
-    "eulerXYZ",
-    "quatRotation",
-    "scaling",
-    "SRC"
+    [
+     "",
+     "prim",
+     ""
+    ],
+    [
+     "",
+     "translation",
+     ""
+    ],
+    [
+     "",
+     "eulerXYZ",
+     ""
+    ],
+    [
+     "",
+     "quatRotation",
+     ""
+    ],
+    [
+     "",
+     "scaling",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "outPrim",
-    "DST"
+    [
+     "",
+     "outPrim",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1756,15 +3522,43 @@
   },
   "UnpackNumericVec": {
    "inputs": [
-    "vec",
-    "SRC"
+    [
+     "numeric:vec3",
+     "vec",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "X",
-    "Y",
-    "Z",
-    "W",
-    "DST"
+    [
+     "numeric:scalar",
+     "X",
+     ""
+    ],
+    [
+     "numeric:scalar",
+     "Y",
+     ""
+    ],
+    [
+     "numeric:scalar",
+     "Z",
+     ""
+    ],
+    [
+     "numeric:scalar",
+     "W",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [
@@ -1773,14 +3567,38 @@
   },
   "VDBWrangle": {
    "inputs": [
-    "grid",
-    "zfxCode",
-    "params",
-    "SRC"
+    [
+     "openvdb",
+     "grid",
+     ""
+    ],
+    [
+     "string",
+     "zfxCode",
+     ""
+    ],
+    [
+     "dict:numeric",
+     "params",
+     ""
+    ],
+    [
+     "",
+     "SRC",
+     ""
+    ]
    ],
    "outputs": [
-    "grid",
-    "DST"
+    [
+     "openvdb",
+     "grid",
+     ""
+    ],
+    [
+     "",
+     "DST",
+     ""
+    ]
    ],
    "params": [],
    "categories": [

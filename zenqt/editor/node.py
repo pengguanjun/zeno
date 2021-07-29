@@ -131,10 +131,11 @@ class QDMGraphicsNode(QGraphicsItem):
         socket_start = y + TEXT_HEIGHT * style['output_shift']
 
         self.inputs.clear()
-        for index, name in enumerate(inputs):
+        for index, (type, name, defl) in enumerate(inputs):
             socket = QDMGraphicsSocket(self)
             socket.setPos(0, y)
             socket.setName(name)
+            socket.setType(type)
             socket.setIsOutput(False)
             self.inputs[name] = socket
             y += TEXT_HEIGHT
@@ -144,10 +145,11 @@ class QDMGraphicsNode(QGraphicsItem):
             y += (len(inputs) - len(outputs)) * TEXT_HEIGHT
 
         self.outputs.clear()
-        for index, name in enumerate(outputs):
+        for index, (type, name, defl) in enumerate(outputs):
             socket = QDMGraphicsSocket(self)
             socket.setPos(0, y)
             socket.setName(name)
+            socket.setType(type)
             socket.setIsOutput(True)
             self.outputs[name] = socket
             y += TEXT_HEIGHT
@@ -203,12 +205,11 @@ class QDMGraphicsNode(QGraphicsItem):
 
     def collapse(self):
         for v in self.childItems():
-            v.hide()
+            if v not in [self.title, self.collapse_button]:
+                v.hide()
 
         self.dummy_input_socket.show()
         self.dummy_output_socket.show()
-        self.collapse_button.show()
-        self.title.show()
 
         self.collapsed = True
         self.collapse_button.update_svg(self.collapsed)

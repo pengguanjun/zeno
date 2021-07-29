@@ -19,11 +19,12 @@ struct Buffer {
     int which = 0;
 };
 
-struct HashGrid {
+struct HashGrid : zeno::IObject {
     float inv_dx;
     float radius;
-    float radius_squared;
-    std::vector<zeno::vec3f> refpos;
+    float radius_sqr;
+    float radius_sqr_min;
+    std::vector<zeno::vec3f> const &refpos;
 
     using CoordType = std::tuple<int, int, int>;
     std::array<std::vector<int>, 4096> table;
@@ -32,14 +33,16 @@ struct HashGrid {
         return ((73856093 * x) ^ (19349663 * y) ^ (83492791 * z)) % table.size();
     }
 
-    void build(std::vector<zeno::vec3f> const &refpos_, float radius_) {
-        refpos = refpos_;
+    HashGrid(std::vector<zeno::vec3f> const &refpos_,
+            float radius_, float radius_min)
+        : refpos(refpos_) {
         for (auto &ent: table) {
             ent.clear();
         }
 
         radius = radius_;
-        radius_squared = radius * radius;
+        radius_sqr = radius * radius;
+        radius_sqr_min = radius_min < 0.f ? -1.f : radius_min * radius_min;
         inv_dx = 0.f / radius;
 
         for (int i = 0; i < refpos.size(); i++) {
@@ -59,7 +62,7 @@ struct HashGrid {
                     for (int pid: table[key]) {
                         auto dist = refpos[pid] - pos;
                         auto dis2 = zeno::dot(dist, dist);
-                        if (dis2 <= radius_squared && dis2 != 0) {
+                        if (dis2 <= radius_sqr && dis2 > radius_sqr_min) {
                             f(pid);
                         }
                     }
@@ -99,13 +102,31 @@ static void vectors_wrangle
     }
 }
 
+struct ParticlesBuildHashGrid : zeno::INode {
+    virtual void apply() override {
+        auto primNei = get_input<zeno::PrimitiveObject>("primNei");
+        float radius = get_input<zeno::NumericObject>("radius")->get<float>();
+        float radiusMin = has_input("radiusMin") ?
+            get_input<zeno::NumericObject>("radiusMin")->get<float>() : 0.f;
+        auto hashgrid = std::make_shared<HashGrid>(
+                primNei->attr<zeno::vec3f>("pos"), radius, radiusMin);
+        set_output("hashGrid", std::move(hashgrid));
+    }
+};
+
+ZENDEFNODE(ParticlesBuildHashGrid, {
+    {{"primitive", "primNei"}, {"numeric:float", "radius"}, {"numeric:float", "radiusMin"}},
+    {{"hashgrid", "hashGrid"}},
+    {},
+    {"zenofx"},
+});
+
 struct ParticlesNeighborWrangle : zeno::INode {
     virtual void apply() override {
         auto prim = get_input<zeno::PrimitiveObject>("prim");
-        auto primNei = has_input("primNei") ?
-            get_input<zeno::PrimitiveObject>("primNei") : prim;
+        auto primNei = get_input<zeno::PrimitiveObject>("primNei");
+        auto hashgrid = get_input<HashGrid>("hashGrid");
         auto code = get_input<zeno::StringObject>("zfxCode")->get();
-        auto radius = get_input<zeno::NumericObject>("radius")->get<float>();
 
         zfx::Options opts(zfx::Options::for_x64);
         opts.detect_new_symbols = true;
@@ -181,8 +202,7 @@ struct ParticlesNeighborWrangle : zeno::INode {
             }
         }
 
-        std::vector<float> pars(prog->params.size());
-        for (int i = 0; i < pars.size(); i++) {
+        for (int i = 0; i < prog->params.size(); i++) {
             auto [name, dimid] = prog->params[i];
             printf("parameter %d: %s.%d\n", i, name.c_str(), dimid);
             assert(name[0] == '$');
@@ -218,17 +238,17 @@ struct ParticlesNeighborWrangle : zeno::INode {
             chs[i] = iob;
         }
 
-        auto hashgrid = std::make_unique<HashGrid>();
-        hashgrid->build(primNei->attr<zeno::vec3f>("pos"), radius);
-        vectors_wrangle(exec, chs, prim->attr<zeno::vec3f>("pos"), hashgrid.get());
+        vectors_wrangle(exec, chs, prim->attr<zeno::vec3f>("pos"),
+                hashgrid.get());
 
         set_output("prim", std::move(prim));
     }
 };
 
 ZENDEFNODE(ParticlesNeighborWrangle, {
-    {"prim", "primNei", "zfxCode", "params", "radius"},
-    {"prim"},
+    {{"primitive", "prim"}, {"primitive", "primNei"}, {"hashgrid", "hashGrid"},
+     {"string", "zfxCode"}, {"dict:numeric", "params"}},
+    {{"primitive", "prim"}},
     {},
     {"zenofx"},
 });

@@ -2,7 +2,7 @@ from PySide2.QtGui import *
 from PySide2.QtCore import *
 from PySide2.QtWidgets import *
 
-from .viewport import ViewportWidget
+from .viewport import DisplayWidget
 from .timeline import TimelineWidget
 from .editor import NodeEditor
 
@@ -35,7 +35,7 @@ class MainWindow(QWidget):
                 #(scrn_size.height() - self_size.height()) // 2)
 
         self.editorTimeline = EditorTimeline()
-        self.viewport = ViewportWidget()
+        self.viewport = DisplayWidget()
 
         self.timeline = self.editorTimeline.timeline
         self.editor = self.editorTimeline.editor
@@ -52,7 +52,9 @@ class MainWindow(QWidget):
 
         self.setWindowIcon(QIcon(asset_path('logo.ico')))
 
-        self.startTimer(1000 // 60)
+        self.timer = QTimer(self)
+        self.timer.start(1000 // 60)
+        self.timer.timeout.connect(self.on_update)
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
@@ -60,10 +62,9 @@ class MainWindow(QWidget):
 
         super().keyPressEvent(event)
 
-    def timerEvent(self, event):
+    def on_update(self):
         self.viewport.on_update()
         self.timeline.on_update()
-        super().timerEvent(event)
 
     def closeEvent(self, event):
         if self.editor.confirm_discard('Exit'):

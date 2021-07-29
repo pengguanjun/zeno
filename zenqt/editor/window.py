@@ -11,7 +11,7 @@ class QDMFileMenu(QMenu):
                 ('&New', QKeySequence.New),
                 ('&Open', QKeySequence.Open),
                 ('&Save', QKeySequence.Save),
-                ('&Import', 'ctrl+shift+o'),
+                ('&Import', 'Ctrl+Shift+O'),
                 ('Save &as', QKeySequence.SaveAs),
         ]
 
@@ -240,6 +240,14 @@ class NodeEditor(QWidget):
         if 'descs' not in prog:
             prog['descs'] = dict(self.descs)
 
+        for name, desc in prog['descs'].items():
+            for key, output in enumerate(desc['outputs']):
+                if isinstance(output, str):
+                    desc['outputs'][key] = ('', output, '')
+            for key, input in enumerate(desc['inputs']):
+                if isinstance(input, str):
+                    desc['inputs'][key] = ('', input, '')
+
         for name, graph in prog['graph'].items():
             if 'nodes' not in graph:
                 prog['graph'][name] = {
@@ -433,12 +441,19 @@ class NodeEditor(QWidget):
             subinputs = []
             suboutputs = []
             for node in graph.values():
+                params = node['params']
                 if node['name'] == 'SubInput':
-                    subinputs.append(node['params']['name'])
+                    n_type = params.get('type')
+                    n_name = params['name']
+                    n_defl = params.get('defl')
+                    subinputs.append((n_type, n_name, n_defl))
                 elif node['name'] == 'SubOutput':
-                    suboutputs.append(node['params']['name'])
+                    n_type = params.get('type')
+                    n_name = params['name']
+                    n_defl = params.get('defl')
+                    suboutputs.append((n_type, n_name, n_defl))
                 elif node['name'] == 'SubCategory':
-                    subcategory = node['params']['name']
+                    subcategory = params['name']
             subinputs.extend(self.descs['Subgraph']['inputs'])
             suboutputs.extend(self.descs['Subgraph']['outputs'])
             desc = {}

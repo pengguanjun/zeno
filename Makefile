@@ -1,10 +1,6 @@
-O=arts/ready/DynamicPointSize.zsg
+O=arts/testpew.zsg
 
 default: clean_run
-
-dist: all
-	make -C build install
-	./dist.sh
 
 all:
 	cmake -B build
@@ -34,4 +30,4 @@ clean_run:
 debug: debug_all
 	USE_GDB=1 ZEN_SPROC=1 ZEN_OPEN=$O ./run.sh
 
-.PHONY: all debug_all debug run dist test configure default
+.PHONY: all debug_all debug run test configure default
